@@ -17,7 +17,7 @@ html {
 }
 
 body {
-  background: #efefef;
+  background: $lightColor;
   font-size: 1rem;
   line-height: 1.6em;
   font-family: $bodyFont;
@@ -29,13 +29,19 @@ a {
 
 img,
 iframe,
+figure,
 object {
   max-width: 100%;
-  max-height: auto;
+  height: auto;
 }
 
 figure {
   margin: 0;
+}
+
+figcaption {
+  padding: 0 $padding;
+  font-style: italic;
 }
 
 %padding {
@@ -72,10 +78,29 @@ figure {
 }
 
 #content {
-  @extend %padding;
+  padding: $padding 0;
 
-  h1 {
+  #post-title {
     margin: 0;
-    line-height: 1.2em;
+    font-size: 1.5rem;
+    line-height: 1.5em;
+    text-align: center;
+  }
+
+  .meta {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+    color: #666666;
+    text-align: center;
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    padding: 0 $padding/2;
   }
 }

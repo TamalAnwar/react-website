@@ -6,6 +6,7 @@ import './public/css/style.scss';
 // Components
 import Blog from './components/Blog';
 import Post from './components/Post';
+import Single from './components/Single';
 
 const Home = () => {
   return (
@@ -94,6 +95,49 @@ const Header = () => {
 };
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      posts: [],
+      currentPost: []
+    };
+    this.fetchAndStorePosts = this.fetchAndStorePosts.bind(this);
+    this.getTheSinglePost = this.getTheSinglePost.bind(this);
+  }
+
+  fetchAndStorePosts() {
+    var endpoint = 'http://tamalweb.com/wp-json/wp/v2/posts?per_page=10';
+    fetch(endpoint)
+      .then((res) => res.json())
+      .then((posts) => this.setState({ posts }))
+      // Do something when this fails
+      .catch((e) => null);
+  }
+
+  getTheSinglePost(slug) {
+    var apiEndpoint = 'http://tamalweb.com/wp-json/wp/v2/posts';
+    var post = this.state.posts.filter((post) => {
+      return post.slug === slug;
+    });
+
+    return post;
+
+    // if (!post.length) {
+    //   console.log('The post is not in the array.');
+    //   // Do some fetching for the single post with slug
+
+    //   fetch(`${apiEndpoint}?slug=${slug}`)
+    //     .then((res) => res.json())
+    //     .then((post) => {
+    //       console.log('Logging the post from fetch', post);
+    //       return post;
+    //     });
+    // } else {
+    //   console.log('Logging the post from state', post);
+    //   return post;
+    // }
+  }
+
   render() {
     return (
       <Router>
@@ -103,8 +147,23 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route path="/about" component={About} />
             <Route path="/contact" component={Contact} />
-            <Route exact path="/blog" component={Blog} />
-            <Route path="/blog/:slug" component={Post} />
+            <Route
+              exact
+              path="/blog"
+              render={() => (
+                <Blog
+                  posts={this.state.posts}
+                  fetchAndStorePosts={this.fetchAndStorePosts}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/blog/:slug"
+              render={(props) => (
+                <Single {...props} getTheSinglePost={this.getTheSinglePost} />
+              )}
+            />
           </main>
         </div>
       </Router>

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import NProgress from 'nprogress';
 
+import Post from './Post';
+
 export default class Blog extends Component {
   constructor(props) {
     super(props);
@@ -11,18 +13,16 @@ export default class Blog extends Component {
   }
 
   componentDidMount() {
-    const endpoint = 'http://tamalweb.com/wp-json/wp/v2/posts?per_page=10';
-
-    console.log('Fetching new data.');
-    fetch(endpoint)
-      .then((res) => res.json())
-      .then((data) => this.setState({ posts: data }));
+    if (!this.props.posts.length) {
+      this.props.fetchAndStorePosts();
+    }
   }
 
   render() {
-    if (!this.state.posts.length) {
+    if (!this.props.posts.length) {
       return (
         <div>
+          <h1 id="page-title">Blog</h1>
           <p>Loading</p>
         </div>
       );
@@ -30,22 +30,26 @@ export default class Blog extends Component {
 
     return (
       <div>
-        <h1>Blog</h1>
-        {this.state.posts.map((item) => {
-          return (
-            <div key={item.id}>
-              <h3>
-                <Link
-                  to={`/blog/${item.slug}`}
-                  dangerouslySetInnerHTML={{ __html: item.title.rendered }}
-                />
-              </h3>
-              <div
-                dangerouslySetInnerHTML={{ __html: item.excerpt.rendered }}
-              />
-            </div>
-          );
-        })}
+        <h1 id="page-title">Blog</h1>
+        {/*// {this.props.posts.map((item) => {
+        //   return (
+        //     <div key={item.id}>
+        //       <h3>
+        //         <Link
+        //           to={`/blog/${item.slug}`}
+        //           dangerouslySetInnerHTML={{ __html: item.title.rendered }}
+        //         />
+        //       </h3>
+        //       <div
+        //         dangerouslySetInnerHTML={{ __html: item.excerpt.rendered }}
+        //       />
+        //     </div>
+        //   );
+        // })*/}
+
+        {this.props.posts.map((post) => (
+          <Post key={post.id} post={post} />
+        ))}
       </div>
     );
   }
