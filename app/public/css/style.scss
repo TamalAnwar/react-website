@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import 'normalize';
+
+$themeColor: #46d89e;
+$themeDeepColor: darken($themeColor, 15%);
+$lightColor: #ffffff;
+$darkColor: #333333;
+$padding: 20px;
+$bodyFont: 'Open Sans', sans-serif;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 14px;
+}
+
+body {
+  background: #efefef;
+  font-size: 1rem;
+  line-height: 1.6em;
+  font-family: $bodyFont;
+}
+
+a {
+  color: $themeDeepColor;
+}
+
+img,
+iframe,
+object {
+  max-width: 100%;
+  max-height: auto;
+}
+
+figure {
+  margin: 0;
+}
+
+%padding {
+  padding: $padding;
+}
+
+#layout {
+  width: 800px;
+  max-width: 100%;
+  margin: 0 auto;
+  background: #ffffff;
+}
+
+#header {
+  background: $themeColor;
+  // @extend %padding;
+}
+
+#menu {
+  text-align: center;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+#menu a {
+  padding: $padding - 5;
+  color: $lightColor;
+  text-decoration: none;
+  display: inline-block;
+}
+
+#menu a:hover {
+  background: $themeDeepColor;
+}
+
+#content {
+  @extend %padding;
+
+  h1 {
+    margin: 0;
+    line-height: 1.2em;
+  }
+}
