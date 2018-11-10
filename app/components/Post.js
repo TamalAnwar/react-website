@@ -4,11 +4,9 @@ import { Link } from 'react-router-dom';
 export default class Post extends Component {
   render() {
     var { title, excerpt, slug } = { ...this.props.post };
-
     if (!this.props.post) {
       return <div>Loading</div>;
     }
-
     return (
       <div className="post-card">
         <h3>
