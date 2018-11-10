@@ -13,7 +13,8 @@ export default class Single extends Component {
     if (!post) {
       return (
         <div>
-          <h1 id="post-title">{`{ ... }`}</h1>
+          <h1 id="post-title">Blog</h1>
+          <p className="meta">Loading...</p>
         </div>
       );
     }

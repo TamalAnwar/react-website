@@ -13,13 +13,13 @@ export default class Blog extends Component {
   }
 
   componentDidMount() {
-    if (!this.props.posts.length) {
+    if (this.props.posts.length < 5) {
       this.props.fetchAndStorePosts();
     }
   }
 
   render() {
-    if (!this.props.posts.length) {
+    if (this.props.posts.length < 5) {
       return (
         <div>
           <h1 id="page-title">Blog</h1>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import config from './config';
 import './public/css/style.scss';
 
 // Components
@@ -106,8 +107,7 @@ class App extends Component {
   }
 
   fetchAndStorePosts() {
-    var endpoint = 'http://tamalweb.com/wp-json/wp/v2/posts?per_page=10';
-    fetch(endpoint)
+    fetch(config.endpoint)
       .then((res) => res.json())
       .then((posts) => this.setState({ posts }))
       // Do something when this fails
@@ -115,27 +115,19 @@ class App extends Component {
   }
 
   getTheSinglePost(slug) {
-    var apiEndpoint = 'http://tamalweb.com/wp-json/wp/v2/posts';
     var post = this.state.posts.filter((post) => {
       return post.slug === slug;
     });
-
+    if (!post.length) {
+      var posts = [...this.state.posts];
+      fetch(`${config.endpoint}?slug=${slug}`)
+        .then((res) => res.json())
+        .then((post) => {
+          posts = [...post];
+          this.setState({ posts });
+        });
+    }
     return post;
-
-    // if (!post.length) {
-    //   console.log('The post is not in the array.');
-    //   // Do some fetching for the single post with slug
-
-    //   fetch(`${apiEndpoint}?slug=${slug}`)
-    //     .then((res) => res.json())
-    //     .then((post) => {
-    //       console.log('Logging the post from fetch', post);
-    //       return post;
-    //     });
-    // } else {
-    //   console.log('Logging the post from state', post);
-    //   return post;
-    // }
   }
 
   render() {
