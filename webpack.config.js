@@ -1,5 +1,7 @@
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var webpack = require('webpack');
+var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   entry: './app/index.js',
@@ -21,9 +23,14 @@ module.exports = {
     historyApiFallback: true
   },
   mode: 'development',
+  optimization: {
+    minimizer: [new UglifyJsPlugin()]
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: './app/index.html'
-    })
+    }),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new webpack.HotModuleReplacementPlugin()
   ]
 };
