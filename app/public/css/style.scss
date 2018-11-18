@@ -80,8 +80,12 @@ figcaption {
 #content {
   padding: $padding 0;
 
+  #page-title,
   #post-title {
     margin: 0;
+  }
+
+  #post-title {
     font-size: 1.5rem;
     line-height: 1.5em;
     text-align: center;
