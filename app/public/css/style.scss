@@ -104,3 +104,86 @@ figcaption {
     padding: 0 $padding/2;
   }
 }
+
+@media (min-width: 800px) {
+  html {
+    font-size: 20px;
+  }
+
+  img,
+  iframe,
+  figure,
+  object {
+    padding-left: $padding;
+    padding-right: $padding;
+    max-width: 100%;
+    height: initial;
+    text-align: center;
+  }
+
+  figcaption {
+    font-style: normal;
+    font-size: 14px;
+  }
+
+  iframe {
+    height: 400px;
+  }
+
+  #layout {
+    width: 1024px;
+  }
+
+  #header {
+    background: $themeColor;
+    // @extend %padding;
+  }
+
+  #menu {
+    text-align: center;
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+
+  #menu a {
+    padding: 10px;
+    color: $lightColor;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  #content {
+    padding: 100px;
+
+    a {
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      padding: 0;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-top: 2rem;
+    }
+
+    #post-title {
+      font-size: 2rem;
+    }
+  }
+}
