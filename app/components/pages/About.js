@@ -4,7 +4,7 @@ import PageLayout from './PageLayout';
 const About = () => {
   return (
     <PageLayout title="About">
-      <p>About page</p>
+      <p>A new about page is coming.</p>
     </PageLayout>
   );
 };

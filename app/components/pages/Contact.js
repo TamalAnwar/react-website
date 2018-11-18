@@ -4,7 +4,10 @@ import PageLayout from './PageLayout';
 const Contact = () => {
   return (
     <PageLayout title="Contact">
-      <p>Contact page</p>
+      <p>Please send me an email with your inquiry:</p>
+      <p>
+        <strong>tamal [at] tamalanwar [dot] com</strong>
+      </p>
     </PageLayout>
   );
 };
