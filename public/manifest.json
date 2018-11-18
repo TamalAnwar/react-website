@@ -1,0 +1,16 @@
+{
+  "short_name": "Tamal's Site",
+  "name": "Tamal Anwar's Site",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "/?source=app",
+  "background_color": "#ffffff",
+  "display": "browser",
+  "scope": "/",
+  "theme_color": "#46d89e"
+}
